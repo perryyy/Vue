@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+
+    <title>購物車!</title>
+  </head>
+  <body>
+    <div class="container" id='app'>
+      <div class="row">
+        <h1 class="col-10">
+            {{username}}購物車!
+        </h1>
+        <div class="col-2">
+          <img :src='img' style='width:40px ;'>         
+      </div>
+      </div>
+    <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">ID</th>
+            <th scope="col" v-model='name'>商品名稱</th>
+            <th scope="col" v-model='category'>種類</th>
+            <th scope="col" v-model='price'>價錢</th>
+            <th scope="col">操作</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr v-for="product in products">
+            <th scope="row">{{product.id}}</th>
+            <td>{{product.name}}</td>
+            <td>{{product.category}}</td>
+            <td>{{product.price}}</td>
+            <td><input type="button" @click="del" class="btn btn-outline-success" value="刪除"></td>
+          </tr>
+        </tbody>
+      </table><br />
+        <div class="row">
+          <div class="col-1">
+           
+          </div>
+          <div class="col-9">
+            
+          </div>
+          <div class="col-2">
+           <h4> 總共：{{ sum }}</h4>  
+          </div>
+        </div>
+     <br>
+      <span>使用者名稱：</span><input type="text" v-model='username' class="form-control"><br>
+      <span>商品名稱</span><input type="text" v-model='name' class="form-control"><br>
+      <span>種類</span><br>
+      <select v-model='category'  class="form-control">   
+   
+        <option>生活用品</option>    
+        <option>文具</option>            
+    </select>
+      <br>
+      <span>價錢</span><input type="text" v-model='price' class="form-control"><br>
+      <input type="button" @click="add" value="新增" class="btn btn-outline-primary">
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12"></script>
+    <script>
+        var app=new Vue({
+            el:'#app',
+            data:{
+                product:[],
+                name:'',
+                category:'',
+                price:'',
+                username:'',              
+                img:'/supermarket.png',
+                products:[{
+                    id:1,
+                    name:'鉛筆',
+                    category:'文具',
+                    price:20,
+                },
+                {
+                    id:2,
+                    name:'洗面乳',
+                    category:'生活用品',
+                    price:150,
+                },
+                {
+                    id:3,
+                    name:'書本',
+                    category:'生活用品',
+                    price:450,
+                }
+            ]
+            },
+            methods:{              
+                add:function(){
+                    this.products.push({id:this.products.length+1,name: this.name,category: this.category,price: this.price})
+                    this.name='',
+                    this.category='',
+                    this.price='';                
+                },
+                del:function(){
+                    this.products.splice(this.products.indexOf(this.product),1)
+                }
+            },
+            computed:{
+                sum:function(){
+                    var result = 0;                  
+                      for(var i =0; i<this.products.length; i++)
+                        {
+                            result += Number(this.products[i].price)                      
+                        };
+                        return result;
+                    }
+                
+            }
+        })
+    </script>
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
+  </body>
+</html>

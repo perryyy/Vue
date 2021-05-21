@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+
+    <title>Hello, world!</title>
+  </head>
+  <body>
+    <div class="container">
+    <h1>Hello, world!</h1>
+    <div class="row">
+          
+        <div class="col" id="txtnumber"> 
+            <input type="text" class="form-control" id="number" name="number"  placeholder="學號">            
+        </div>
+        <div class="col" id="txtname">  
+            <input type="text" class="form-control" id="name" name="name" placeholder="姓名" >           
+        </div>
+        <div class="col" id="add_div">
+            <button type="button" class="btn btn-primary" onclick="get()">新增</button>
+        </div>
+        <div class="col" id="edit_div" style="display: none;">
+          <button type="button" class="btn btn-primary" onclick="Modify()">修改</button>
+          <button type="button" class="btn btn-secondary" onclick="Cancel()">取消</button>
+        </div>
+        
+    </div>
+    <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">First</th>
+            <th scope="col">Last</th>
+            <th scope="col">Handle</th>
+          </tr>
+        </thead>
+        <tbody id="tbody">
+         
+        </tbody>
+      </table>
+      </div>
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
+  </body>
+    <script>
+        var data=[];
+        var numtxt=document.getElementById("number");
+        var nametxt=document.getElementById("name");
+        var tbody =document.getElementById("tbody");
+        var adddiv=document.getElementById("add_div");
+        var editdiv=document.getElementById("edit_div");
+        var modifyid='';
+        function showdatafun(){
+          var showdata="";
+            data.forEach(function (item,index)
+            {
+                showdata+="<tr>";
+                showdata+="<td>"+index+"</td>";
+                showdata+="<td>"+item.no+"</td>";
+                showdata+="<td>"+item.name+"</td>";
+                showdata+="<td><button type='button' class='btn btn-primary'  onclick='edit(" + index + ")'>修改</button> \
+                        <button type='button' class='btn btn-primary' onclick='deldata(" + index + ")'>刪除</button></td>";
+                showdata+="</tr>";
+            })
+            tbody.innerHTML=showdata;
+       }
+       function get(){
+            data.push({no:numtxt.value,name:nametxt.value});
+            Cancel();
+            showdatafun();
+
+       }
+       function deldata(index){
+         console.log(index);
+          data.splice(index, 1);    
+          showdatafun();
+
+       }
+       function edit(index)
+       {
+          numtxt.value=data[index].no;
+          nametxt.value=data[index].name;
+          modifyid=index;
+          editdiv.style='';
+          adddiv.style='display:none';
+          showdatafun();
+       }
+      function Modify()
+      {
+        data[modifyid].no = numtxt.value;
+        data[modifyid].name = nametxt.value;
+        Cancel();
+        showdatafun();
+      }
+
+       function Cancel()
+       {
+          adddiv.style='';
+          editdiv.style='display:none';
+          numtxt.value='';
+          nametxt.value='';
+          modifyid='';
+       }
+    </script>
+</html>

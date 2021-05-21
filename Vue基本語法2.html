@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+
+    <title>Hello, world!</title>
+  </head>
+  <body>
+    
+    <div class="container">
+      <h1>Hello, world!</h1>  
+    <div id='app'>
+        <input type="text" v-model.trim='name'><br />
+        <p>{{ name }}</p>
+        <p>{{ UpperCaseName }}</p>
+        <div v-html="text">
+        </div>
+        <div v-for="item in student" :key="item.Id">
+            {{item.name}}  {{item.Id}}
+        </div>
+        <div v-show="name=='perry'">
+            動態顯示
+        </div>
+        <img :src='img' style="width: 200px;"><br>
+        <button @click="show()">按按看</button><br>
+        <h4>computed做加減</h4>
+        num1<input type="text" v-model.number='num1'><br />
+        num2<input type="text" v-model.number='num2'><br />
+        {{sum}}<br />
+        num3<input type="text" v-model='num3'><br />
+        <p>{{ verification }}</p><br />
+        <div v-for="i in 9">
+          <h3>{{ i }}</h3>
+          <div v-for="j in 9">{{ i }} x {{ j }}={{ i*j }}</div>
+        </div><br />
+        <div v-bind:style="{ color: myColor, fontSize: myFontSize + 'px' }">123</div>
+        <div v-bind:style="myStyle">123</div>
+        
+    </div>
+  </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12"></script>
+    <script>
+        var vm=new Vue({
+            el:'#app',
+            data:{
+                name:'perry',
+                text: '<h2>perry</h2>',
+                student:[{name:'A',Id:'1'},{name:'B',Id:'2'}],
+                img:'https://timesofindia.indiatimes.com/photo/67586673.cms',
+                num1:'',
+                num2:'',
+                num3:'',
+                verification: '',
+                myColor: 'red',
+                myFontSize: 30,
+                myStyle: {
+                    color: 'red',
+                    fontSize: '30px'
+                  }
+              },
+              methods:{
+                show(){
+                  console.log('我是perry');
+                }
+              },
+              computed:{
+                UpperCaseName(){
+                  return this.name.toUpperCase().trim();
+                },
+                sum(){
+                  return this.num1+this.num2;
+                }
+              },
+              watch:{
+                num3(newval,oldval){
+                  console.log('newval:' , newval , 'oldval:' , oldval);
+                  if( isNaN(newval) )                 
+                     this.verification = '請輸入數字';                
+                  else
+                     this.verification = '';
+                }
+              }
+        })
+    </script>
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
+  </body>
+</html>

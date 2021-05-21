@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id='app'>
+
+    </div>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12"></script>
+    <script>
+            var vm=new Vue({
+                el:'#app',
+                data:{
+
+                },
+                mounted() {
+                    axios.get("https://challenge.thef2e.com/api/thef2e2019/stage6/rooms", {
+                        headers: {
+                            authorization: "Bearer " + "CGgGz2y5DZ3xFQ5ubOt5S268uvKONejWTDZn5v2ISewAWaGdGWsA2vq07pPQ",
+                            accept: "application/json",
+                        }
+                    }).then((res) => this.rooms = res.data)
+                    //成功拿到資料後讓回傳的資料匯入Vue的data中
+                        .catch(function (error) {
+                            console.log('連線異常');  //失敗的話回傳連線異常
+                        })
+                }
+            })
+    </script>
+</body>
+</html>

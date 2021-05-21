@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <p v-text="msg"></p>
+      </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12/dist/vue.js"></script> 
+    <script>
+       
+var vm = new Vue({
+    el:'#app',
+  data: {
+    msg: 'Hello Vus.js'
+  },
+  beforeCreate() {
+    console.log('beforeCreate 被執行');
+  },
+  created() {
+    console.log('created 被執行');
+  },
+  beforeMount() {
+    console.log('beforeMount 被執行');
+  },
+  mounted() {
+    console.log('mounted 被執行');
+  },
+  beforeUpdate() {
+    console.log('beforeUpdate 被執行');
+  },
+  updated() {
+    console.log('updated 被執行');
+  },
+  beforeDestroy() {
+    console.log('beforeDestroy 被執行');
+  },
+  destroyed() {
+    console.log('destroyed 被執行');
+  }
+});
+    </script>
+</body>
+</html>

@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+   
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+
+    <title>Hello, world!</title>
+  </head>
+  <body>
+ 
+  
+    <div class="container">
+      <h1>Vue練習</h1>
+      <div id='app'>
+        輸入名字<input type="text" v-model='name'><br />
+        名字:{{ name }}<br />  
+        下拉式選單
+        <select v-model='option'>
+          <option>1</option>
+          <option>2</option>
+          <option>3</option>
+          </select><br />
+        選項為{{option}}  <br />
+        check單選
+        <input type="checkbox" v-model='check'>{{check}}<br/>
+        check多選<br />
+        <input type="checkbox" value="123" v-model='checkval'><span>123</span> <br />
+        <input type="checkbox" value="456" v-model='checkval'><span>456</span><br />
+        顯示結果{{checkval}}<br />
+        radio單選<br />
+        <input type='radio' v-model='radio' value="前端"/>前端<br />
+        <input type='radio' v-model='radio' value="後端"/>後端<br />
+        選擇的內容是 : {{ radio }}<br />
+        v-if練習<br />
+        <span v-if='name'>{{name}}</span>
+        <span v-else='name'>999</span>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12"></script>
+    <script>
+      var vm=new Vue({
+      el:'#app',
+      data:{
+        name:'perry',    
+        option:'', 
+        check:false,
+        checkval:[],
+        radio:'',
+       } ,    
+    })
+    </script>
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
+  </body>
+
+</html>
